@@ -1,0 +1,166 @@
+
+项目开发中遇到的问题及知识汇总
+
+
+	2015-02-06
+		1，（1）能获得聚合的天气数据吧，返回的是json对象，但是在使用gson进行解析的时候出现了问题
+			解析：Gson很强大，是可以解析那种天气预报的复杂json数据的，但是我的bean写的不符合规范，所以才会解析不出来的
+			    见网络文档中的说明
+				----使用Gson一定要注意定义bean的时候，属性要和json数据的key名相同，否则得不到数据，
+					简单的复杂的都可以使用Gson来进行解析   见文档
+			
+			
+			
+		  （2）获得天气数据是个异步的过程，直接调用方法中的数据，会出现返回空
+			解析：
+				还是对Handler这个消息处理机制不太了解，见handler的详细学习
+				记住，每个线程都可以有一个handler，looper，MessageQueue，当需要将子线程中的数据发送给主线程的时候，
+				就需要使用主线程的handler，将数据消息发送到主线程的Looper中的MessageQueue，然后Looper.loop（）将会不断的
+			   轮询这个MessageQueue，如果发现有消息，则会将消息发送给这个handler，然后在handler中进行消息的处理，也就是handlemessage()
+			   并更新UI
+			   
+			   
+			   将主线程中的handler作为参数传递给调用的类，然后将异步获得的数据由主线程的handler发送，便发送到主线程的Looper中的
+			   MessageQueue中，然后在activity中定义handlemessage()来更新UI
+		  
+		  
+		  （3）在测试网络的时候，请求预警信息，返回了405
+			解析：
+			发现那个请求只能使用Get，而我使用了HttpPost
+		  
+		  
+		  
+		  
+		  （4）使用handler  并将耗时获得数据的方法放在Thread中，出现了这个错误 Can't create handler inside thread that has not called Looper.prepare()
+			解析：
+			在非主线程中直接new Handler() 会报如下的错误: 
+			Can't create handler inside thread that has not called Looper.prepare() 
+			原因是非主线程中默认没有创建Looper对象，需要先调用Looper.prepare()启用Looper。 
+			
+			
+			不行  把handler再详细的学一下
+			
+	================================================================================================================================================================		
+			
+		2，对网络的操作请求，发送参数等，Android是提供了一个很用于数据小而频繁的框架 让网络开发更简单   Volley	
+		
+	================================================================================================================================================================	
+		3.将主线程的handler发送到每个耗时任务线程中去获得数据，然后获得的都通过消息发送到主线程中
+		
+			我犯了一个错误，区分这些传递过来的obj，只要加上what都是可以区分的，但是
+			我在case语句中少加了break;!!!!
+			报错~
+			
+			com.prinzer.jweather.model.bean.JweatherBean2 cannot be cast to com.prinzer.jweather.model.bean.JForecast3HBean
+			
+	================================================================================================================================================================	
+      4，在数据库的开发中，使用了一种对象关系模型的数据库开发框架
+
+·			LitePal	  详情见   http://blog.csdn.net/guolin_blog/article/details/38556989
+
+
+	================================================================================================================================================================	
+	5，启动另一个activity样式设置
+	
+	    startActivity(new Intent(Animation.this, Controls1.class));
+
+        //在startActivity()方法之后立即调用，设定新的Activity进入和
+
+        //当前Activity退出时的动画。
+
+        overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);	
+		
+	================================================================================================================================================================			
+	6   报了这个错  在初始化界面的时候
+		Activity com.prinzer.jweather.MainActivity has leaked ServiceConnection com.baidu.location.LocationClient$1@41c1fdd0 that was originally bound here	
+		大概是报了启动service后，没有将service给unbound掉，
+		
+		
+	================================================================================================================================================================
+
+	7，使用资源Shape画圆
+		<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval" 
+    android:innerRadius="100dp">
+     <solid  android:color="#ff0000"  />
+     <size android:width="20dp"
+         android:height="20dp"/>
+
+</shape>
+		
+		
+	================================================================================================================================================================
+
+	8.靠！！！花了有一整天时间！！
+		问题：（1）SlidingMenu库工程引用的问题，首先第一个是考虑jar包的冲突
+					还要考虑在引入其他库工程的时候，一定要把其他的库工程copy到跟自己工程相同的目录下
+					
+				（2）调用聚合数据的时候出现了这个错误  
+					java.lang.UnsatisfiedLinkError: Native method not found: com.thinkland.juheapi.common.LibJuheSDK.Encrypt
+					这个错误是so文件无法找到或者参数传递错误，反正是jni层的
+					
+					解决办法：（1）在导入SlidingMenu的时候一定不要Actionbarsherlock！！！去掉就ok了！！
+								（2）聚合工程师给出的解释：在armeabi的各个目录中都放入她们的so文件
+		
+		
+	==========================================================================================================================
+	9.现在还有几点很是模糊
+		（1）使用ViewPager的时候如何动态加载
+		（2）viewpager和下拉刷新如何解决冲突
+		
+		
+	==========================================================================================================================
+·	10   关于接口回调需要四步：
+··		（1）定义一个接口，用于回调得到的数据
+						public interface OnCallBack{
+							public abstract void getData(List<String> datas);
+						}
+		（2）//设置本类中接口的属性
+						public OnCallBack onCallBack;
+			
+		（3）//设置外部调用该接口的方法
+						public void setOnCallBack(OnCallBack onCallBack){
+							this.onCallBack=onCallBack;
+						}
+		（4）//将数据传入到接口的方法中
+						public void test(){
+							List<String> dataList=new ArrayList<String>();
+							this.onCallBack.getData(dataList);
+						}	
+
+
+	==========================================================================================================================
+
+	11  我感觉我的思路有问题   想一下将所有的数据都获得   再包装在一起   这貌似太耗费时间了
+	   我是这么想的： （1）Viewpager会去实例化一个界面和另一个界面    
+	                       我想将界面和数据更新分离  先把界面显示   然后分别加载数据并且更新ui  这样时间耗费小
+						   
+						   查询出有几个城市，然后通过在viewpager中的instantiateItem先去加载界面   再将界面中需要设置数据的控件分发出来
+					（2）不要让用户每次登陆都去获得最新的数据  可以实现数据缓存
+
+                             有数据库缓存，但是觉得用的最多的是文件缓存   设置缓存更新时间  开启服务去定时更新缓存
+						
+		------上面的思路是错误的，因为会出现数据还没完成的时候就将数据填充
+		
+		  最终还是将所有的数据都获得后再将数据传递给+ViewPager中进行填充！
+						
+		
+	12解决ViewPager和SlidingMenu的冲突问题
+
+				//设置当ViewPager不为第一页的时候  取消SM的滑动
+				if (position!=0) {
+					sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+				}else {
+					sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+				}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
