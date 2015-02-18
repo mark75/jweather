@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">简易天气</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_test_index">TestIndexActivity</string>
+    <string name="title_activity_handler">HandlerActivity</string>
+    <string name="title_activity_jlist_view">JListViewActivity</string>
+    <string name="title_activity_index">IndexActivity</string>
+    <string name="title_activity_swipe">SwipeActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+
+</resources>

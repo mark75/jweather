@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_index_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/header_bg"
+    android:gravity="center"
+    android:padding="8dp" >
+
+    <ImageView
+        android:id="@+id/iv_index_header_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/j_menu_toggle" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_index_header_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/j_share" />
+
+    <TextView
+        android:id="@+id/tv_index_header_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_index_header_menu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:text="北京"
+        android:textColor="@color/normal_text_color"
+        android:textSize="@dimen/big_size" />
+
+    <ImageView
+        android:id="@+id/iv_index_header_refresh"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="14dp"
+        android:layout_toRightOf="@+id/tv_index_header_city"
+        android:src="@drawable/j_refresh" />
+
+</RelativeLayout>

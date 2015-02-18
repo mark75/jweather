@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/content_bg" >
+    
+       <!-- 头部 -->
+
+        <include 
+            android:id="@+id/include_header"
+            layout="@layout/index_header"
+            android:layout_alignParentTop="true" >
+        </include>
+
+
+    <!-- 城市切换的指示器 -->
+
+    <LinearLayout
+        android:layout_below="@id/include_header"
+        android:layout_marginTop="8dp"
+        android:id="@+id/ll_index_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal" >
+        <ImageView 
+            android:id="@+id/iv_index_idicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/index_indicator_selected"
+            />
+    </LinearLayout>
+
+    <!-- push time -->
+
+    <TextView
+        android:layout_below="@id/ll_index_indicator"
+        android:id="@+id/tv_index_item_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="6dp"
+        android:text="__"
+        android:textColor="@color/dark_text_color" />
+
+    <!-- weather icon -->
+
+    <ImageView
+        android:id="@+id/iv_index_item_wicon"
+        android:layout_width="140dp"
+        android:layout_height="210dp"
+        android:layout_below="@id/tv_index_item_publish"
+        android:layout_centerHorizontal="true"
+         >
+    </ImageView>
+
+    <LinearLayout
+        android:id="@+id/rl_index_item_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_index_item_wicon"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/ll_index_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/iv_index_item_temp"
+                android:layout_width="26dp"
+                android:layout_height="57dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/j_temp" />
+
+            <ImageView
+                android:id="@+id/iv_index_item_t2"
+                android:layout_width="30dp"
+                android:layout_height="61dp"
+                android:layout_toLeftOf="@id/iv_index_item_temp"
+                 />
+
+            <ImageView
+                android:id="@+id/iv_index_item_t1"
+                android:layout_width="30dp"
+                android:layout_height="61dp"
+                android:layout_toLeftOf="@id/iv_index_item_t2"
+                 />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_index_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="8dp" >
+
+            <TextView
+                android:id="@+id/tv_index_item_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="__ __"
+                android:textColor="@color/normal_text_color"
+                android:textSize="@dimen/normal_size" />
+
+            <TextView
+                android:id="@+id/tv_index_item_wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_index_item_weather"
+                android:layout_marginTop="6dp"
+                android:text="__ __"
+                android:textColor="@color/normal_text_color"
+                android:textSize="@dimen/normal_size" />
+
+            <TextView
+                android:id="@+id/tv_index_item_air"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_index_item_weather"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@id/tv_index_item_wind"
+                android:text="__ __"
+                android:textColor="@color/normal_text_color"
+                android:textSize="@dimen/normal_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- warnig -->
+
+    <TextView
+        android:id="@+id/tv_index_item_warnig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_index_item_details"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="道路结冰黄色预警>"
+        android:textColor="@color/normal_text_color"
+        android:textSize="@dimen/normal_size" />
+
+    <!-- 未来三小时和未来几天的天气情况 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        android:paddingBottom="22dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <!-- 时间间隔 -->
+            <!-- t1 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_t1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_t1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_t1"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                      />
+
+                <TextView
+                    android:id="@+id/tv_index_t1_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+
+            <!-- t2 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_t2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_t2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_t2"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                     />
+
+                <TextView
+                    android:id="@+id/tv_index_t2_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+
+            <!-- t3 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_t3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_t3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_t3"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_index_t3_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+
+            <!-- t4 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_t4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_t4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_t4"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                   />
+
+                <TextView
+                    android:id="@+id/tv_index_t4_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+
+            <!-- t5 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_t5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_t5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_t5"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                 />
+
+                <TextView
+                    android:id="@+id/tv_index_t5_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_index_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/line_color" >
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal" >
+
+            <!-- 未来几天的天气情况 -->
+            <!-- d1 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_d1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_d1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_d1"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                      />
+
+                <TextView
+                    android:id="@+id/tv_index_d1_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+
+            <!-- d2 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_d2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_d2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_d2"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                     />
+
+                <TextView
+                    android:id="@+id/tv_index_d2_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+
+            <!-- d3 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_d3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_d3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_d3"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_index_d3_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+
+            <!-- d4 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_d4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_d4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_d4"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_index_d4_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+
+            <!-- d5 -->
+
+            <LinearLayout
+                android:id="@+id/rl_index_d5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_index_d5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_index_d5"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                     />
+
+                <TextView
+                    android:id="@+id/tv_index_d5_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="__ __"
+                    android:textColor="@color/normal_text_color" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

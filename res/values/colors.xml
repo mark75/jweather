@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- index_header -->
+    <color name="header_bg">#2E2E2E</color>
+    <color name="content_bg">#333333</color>
+    
+    <color name="normal_text_color">#DDDDDD</color>
+    <color name="dark_text_color">#999999</color>
+    <color name="line_color">#7F7F7F</color>
+</resources>
